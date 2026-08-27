@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>로그인 · [브랜드명]</title>
+
+<!-- 이 저장소에는 빌드 시스템이 없어 폰트를 CDN에서 직접 받는다.
+     번들러를 붙이게 되면 self-host(@font-face + font-display:swap)로 옮길 것. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap">
+
+<style>
+  /* design-login/ 캔버스의 토큰을 그대로 옮긴 값 */
+  :root {
+    --bg: #0B0C0E;
+    --surface: #15171B;
+    --border: #25282E;
+    --border-strong: #3A3E45;
+    --text: #F4F2EE;
+    --muted: #8E9299;
+    --dim: #6B7078;
+    --placeholder: #7C828B;   /* 원본 #565B64 는 본문 대비 2.6:1 이라 AA 미달, 4.6:1 로 올림 */
+    --accent: #FFB43D;
+    --accent-hover: #FFCE7A;
+    --danger: #FF7A5A;
+    --danger-text: #FF9A80;
+    --success: #7CF0B8;
+    --btn-off-bg: #1C1F24;
+    --btn-off-text: #565B64;  /* 비활성 컨트롤은 WCAG 1.4.3 대비 예외 */
+    --radius: 14px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+
+  .screen {
+    width: 100%;
+    max-width: 390px;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 24px 28px;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-hover); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* 브랜드 */
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-name { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+
+  /* 헤드라인 */
+  .head { margin-top: 46px; }
+  .head h1 {
+    margin: 0;
+    font-size: 33px;
+    font-weight: 700;
+    line-height: 1.22;
+    letter-spacing: -0.035em;
+    text-wrap: pretty;
+  }
+  .head p {
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  /* 필드 */
+  .fields { display: flex; flex-direction: column; gap: 18px; margin-top: 38px; }
+  .field { display: flex; flex-direction: column; gap: 9px; }
+  .field label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+  }
+
+  .input {
+    width: 100%;
+    height: 56px;
+    padding: 0 16px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color .16s ease, box-shadow .16s ease;
+  }
+  .input::placeholder { color: var(--placeholder); }
+  .input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 180, 61, 0.16);
+  }
+  .input[aria-invalid="true"] { border-color: var(--danger); }
+
+  .pw-wrap { position: relative; display: flex; }
+  .pw-wrap .input { padding-right: 58px; }
+  .pw-toggle {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  /* SVGElement 에는 hidden IDL 속성이 없어 클래스로 전환한다 */
+  .pw-toggle .icon-show { display: none; }
+  .pw-toggle.revealed .icon-hide { display: none; }
+  .pw-toggle.revealed .icon-show { display: block; }
+
+  /* 에러 배너 */
+  .error {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    background: rgba(255, 122, 90, 0.09);
+    border: 1px solid rgba(255, 122, 90, 0.28);
+    border-radius: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--danger-text);
+  }
+  .error[hidden] { display: none; }
+
+  /* 옵션 줄 */
+  .options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    height: 44px;
+  }
+  .remember {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 44px;
+    font-size: 13.5px;
+    color: #B9BDC4;
+    cursor: pointer;
+    user-select: none;
+  }
+  .remember input {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .box {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+  }
+  .box svg { display: none; }
+  .remember input:checked + .box {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+  .remember input:checked + .box svg { display: block; }
+  .remember input:focus-visible + .box {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .forgot { font-size: 13.5px; font-weight: 500; }
+
+  /* 제출 버튼 */
+  .submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    height: 56px;
+    margin-top: 22px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--btn-off-text);
+    background: var(--btn-off-bg);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color .18s ease, color .18s ease, transform .08s ease;
+  }
+  .submit:disabled { cursor: not-allowed; }
+  /* 두 필드가 모두 채워지면 켜진다 */
+  .submit.is-ready { background: var(--accent); color: var(--bg); }
+  .submit.is-ready:hover:not(:disabled) { background: var(--accent-hover); }
+  .submit.is-ready:active:not(:disabled) { transform: translateY(1px); }
+  .submit.is-done { background: var(--success); color: var(--bg); }
+
+  .submit .label-loading,
+  .submit .label-done { display: none; }
+  .submit.is-loading .label-idle,
+  .submit.is-loading .label-done { display: none; }
+  .submit.is-loading .label-loading { display: inline-flex; align-items: center; gap: 9px; }
+  .submit.is-done .label-idle,
+  .submit.is-done .label-loading { display: none; }
+  .submit.is-done .label-done { display: inline-flex; align-items: center; gap: 9px; }
+
+  .spinner {
+    width: 17px;
+    height: 17px;
+    display: block;
+    border: 2.2px solid rgba(11, 12, 14, 0.28);
+    border-top-color: var(--bg);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* 하단 */
+  .terms {
+    margin: 18px 0 0;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--dim);
+    text-align: center;
+  }
+  .signup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 36px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .signup a { font-weight: 600; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: .001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: .001ms !important;
+    }
+    .spinner { border-top-color: transparent; border-color: rgba(11, 12, 14, 0.45); }
+  }
+</style>
+</head>
+
+<body>
+<main class="screen">
+
+  <div class="brand">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M3.4 10.4 12 3.4l8.6 7" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M5.7 12.1v7a1.5 1.5 0 0 0 1.5 1.5h9.6a1.5 1.5 0 0 0 1.5-1.5v-7" stroke="var(--text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+      <path d="M9.8 20.6v-4.2a2.2 2.2 0 0 1 4.4 0v4.2" stroke="var(--text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+    <span class="brand-name">[브랜드명]</span>
+  </div>
+
+  <div class="head">
+    <h1>다시 오셨네요</h1>
+    <p>예약 내역과 찜해 둔 공간이 그대로 있어요.</p>
+  </div>
+
+  <form id="login" novalidate>
+    <div class="fields">
+
+      <div class="field">
+        <label for="email">이메일</label>
+        <input class="input" id="email" name="email" type="email" autocomplete="email"
+               placeholder="you@example.com" required>
+      </div>
+
+      <div class="field">
+        <label for="pw">비밀번호</label>
+        <div class="pw-wrap">
+          <input class="input" id="pw" name="password" type="password" autocomplete="current-password"
+                 placeholder="8자 이상" required minlength="8">
+          <button class="pw-toggle" id="pwToggle" type="button" aria-label="비밀번호 표시" aria-pressed="false">
+            <svg class="icon-hide" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M2.5 12S6 5.8 12 5.8 21.5 12 21.5 12 18 18.2 12 18.2 2.5 12 2.5 12Z" stroke="var(--muted)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              <circle cx="12" cy="12" r="3.1" stroke="var(--muted)" stroke-width="1.6"></circle>
+            </svg>
+            <svg class="icon-show" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 4.4 19.6 20" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round"></path>
+              <path d="M9.6 6.2A9.6 9.6 0 0 1 12 5.9c6 0 9.5 6.1 9.5 6.1a17 17 0 0 1-3.3 3.9M6.5 8.1A17.5 17.5 0 0 0 2.5 12s3.5 6.1 9.5 6.1a9.4 9.4 0 0 0 3.2-.55" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M9.9 10a3 3 0 0 0 4.2 4.2" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="error" id="error" role="alert" aria-live="polite" hidden>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" stroke="var(--danger)" stroke-width="1.7"></circle>
+          <path d="M12 7.6v5.2" stroke="var(--danger)" stroke-width="1.7" stroke-linecap="round"></path>
+          <circle cx="12" cy="16.2" r="0.95" fill="var(--danger)"></circle>
+        </svg>
+        <span id="errorText"></span>
+      </div>
+
+    </div>
+
+    <div class="options">
+      <label class="remember">
+        <input type="checkbox" id="remember" checked>
+        <span class="box">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12.6 10 17.4 19 7.4" stroke="var(--bg)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+        <span>로그인 상태 유지</span>
+      </label>
+      <a class="forgot" href="#">비밀번호 찾기</a>
+    </div>
+
+    <button class="submit" id="submit" type="submit" disabled>
+      <span class="label-idle">로그인</span>
+      <span class="label-loading"><span class="spinner"></span>확인 중</span>
+      <span class="label-done">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12.6 10 17.4 19 7.4" stroke="var(--bg)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>로그인 완료
+      </span>
+    </button>
+  </form>
+
+  <p class="terms">로그인하면 [이용약관]과 [개인정보 처리방침]에 동의하게 됩니다.</p>
+
+  <div class="signup">
+    <span>아직 계정이 없으신가요?</span>
+    <a href="#">회원가입</a>
+  </div>
+
+</main>
+
+<script>
+(function () {
+  var form     = document.getElementById('login');
+  var email    = document.getElementById('email');
+  var pw       = document.getElementById('pw');
+  var toggle   = document.getElementById('pwToggle');
+  var errorBox = document.getElementById('error');
+  var errorTxt = document.getElementById('errorText');
+  var submit   = document.getElementById('submit');
+
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  var status = 'idle';
+
+  function clearError() {
+    errorBox.hidden = true;
+    errorTxt.textContent = '';
+    email.removeAttribute('aria-invalid');
+    pw.removeAttribute('aria-invalid');
+  }
+
+  function showError(message, field) {
+    errorTxt.textContent = message;
+    errorBox.hidden = false;
+    field.setAttribute('aria-invalid', 'true');
+    field.focus();
+  }
+
+  // 두 필드가 모두 채워졌을 때만 버튼이 켜진다 (원본 캔버스와 동일)
+  function sync() {
+    var ready = email.value.length > 0 && pw.value.length > 0;
+    submit.classList.toggle('is-ready', ready);
+    submit.disabled = !ready || status !== 'idle';
+  }
+
+  form.addEventListener('input', function () {
+    if (status !== 'idle') return;
+    clearError();
+    sync();
+  });
+
+  toggle.addEventListener('click', function () {
+    var reveal = pw.type === 'password';
+    pw.type = reveal ? 'text' : 'password';
+    toggle.setAttribute('aria-pressed', String(reveal));
+    toggle.setAttribute('aria-label', reveal ? '비밀번호 숨기기' : '비밀번호 표시');
+    toggle.classList.toggle('revealed', reveal);
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (status !== 'idle') return;
+
+    var value = email.value.trim();
+    if (!EMAIL_RE.test(value)) {
+      showError('이메일 주소 형식을 확인해 주세요.', email);
+      return;
+    }
+    if (pw.value.length < 8) {
+      showError('비밀번호는 8자 이상이어야 해요.', pw);
+      return;
+    }
+
+    clearError();
+    status = 'loading';
+    submit.classList.add('is-loading');
+    submit.disabled = true;
+
+    // TODO: 실제 인증 API 연결 지점. 지금은 캔버스와 같은 1100ms 목업.
+    setTimeout(function () {
+      status = 'done';
+      submit.classList.remove('is-loading');
+      submit.classList.add('is-done');
+    }, 1100);
+  });
+
+  sync();
+})();
+</script>
+</body>
+</html>
