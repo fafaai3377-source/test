@@ -11,10 +11,17 @@
         "source": "github",
         "repo": "mattpocock/skills"
       }
+    },
+    "taste-skill": {
+      "source": {
+        "source": "github",
+        "repo": "Leonxlnx/taste-skill"
+      }
     }
   },
   "enabledPlugins": {
     "ponytail@ponytail": true,
-    "mattpocock-skills@mattpocock": true
+    "mattpocock-skills@mattpocock": true,
+    "taste-skill@taste-skill": true
   }
 }
