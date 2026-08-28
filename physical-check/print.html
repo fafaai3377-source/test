@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>피지컬 체크 준비사항</title>
+<style>
+@page{ size:A4; margin:15mm 15mm 16mm; }
+*{box-sizing:border-box; margin:0; padding:0}
+html{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+body{
+  font-family:"Pretendard","Apple SD Gothic Neo",sans-serif;
+  font-size:9.4pt; line-height:1.58; color:#15171B; background:#fff;
+  word-break:keep-all; font-weight:400;
+}
+:root{
+  --ink:#15171B; --ink2:#4A4E57; --ink3:#8A9099;
+  --rule:#DCDCD6; --rule2:#EEEEE9; --bg2:#FAFAF7;
+  --pink:#DB0074; --pinkbg:#FDF0F7; --pinkln:#F2C2DC;
+  --grn:#0F6E58; --grnbg:#EAF3F0; --grnln:#B4D8CD;
+  --amb:#8F5400; --ambbg:#FCF3E4; --ambln:#E7D0A6;
+}
+.sec{break-before:page}
+h1{font-size:27pt; font-weight:700; letter-spacing:-.03em; line-height:1.12}
+h2{font-size:14.5pt; font-weight:700; letter-spacing:-.02em; line-height:1.3}
+h3{font-size:10pt; font-weight:600; letter-spacing:-.01em; line-height:1.4}
+h4{font-size:8.6pt; font-weight:600; letter-spacing:-.01em}
+p{margin-bottom:7pt}
+p:last-child{margin-bottom:0}
+strong{font-weight:600}
+em{font-style:normal; color:var(--pink); font-weight:600}
+
+.eyebrow{font-size:7.2pt; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:var(--pink)}
+.kick{font-size:6.8pt; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--ink3); margin-bottom:4pt}
+.lead{font-size:10.5pt; font-weight:300; color:var(--ink2); line-height:1.6}
+.mut{color:var(--ink2)}
+.mut3{color:var(--ink3)}
+.n{font-variant-numeric:tabular-nums; white-space:nowrap}
+
+.shead{display:flex; gap:9pt; align-items:baseline; border-top:1.6pt solid var(--pink); padding-top:6pt; margin-bottom:10pt}
+.shead .no{font-size:8pt; font-weight:700; color:var(--pink); letter-spacing:.05em; flex:0 0 auto}
+.shead .tx{flex:1}
+.shead p{margin:3pt 0 0; font-size:8.8pt; color:var(--ink2); font-weight:300}
+
+.stack{display:flex; flex-direction:column; gap:9pt}
+.g2{display:grid; grid-template-columns:1fr 1fr; gap:8pt}
+.g3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8pt}
+.g21{display:grid; grid-template-columns:1.35fr 1fr; gap:8pt}
+.card{border:.6pt solid var(--rule); background:#fff; padding:9pt 10pt; break-inside:avoid}
+.card.b{background:var(--bg2)}
+.card.pk{border-color:var(--pinkln); background:var(--pinkbg)}
+.card.gr{border-color:var(--grnln); background:var(--grnbg)}
+.card.am{border-color:var(--ambln); background:var(--ambbg)}
+.card.gr .kick{color:var(--grn)} .card.am .kick{color:var(--amb)} .card.pk .kick{color:var(--pink)}
+.card h3{margin-bottom:4pt}
+.card p{font-size:8.6pt; line-height:1.55}
+
+table{border-collapse:collapse; width:100%; font-size:8.1pt; line-height:1.45}
+thead th{
+  text-align:left; font-size:6.8pt; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink3); padding:5pt 5pt; border-bottom:.8pt solid var(--ink); background:var(--bg2);
+}
+tbody td{padding:4.6pt 5pt; border-bottom:.5pt solid var(--rule2); vertical-align:top}
+tbody tr{break-inside:avoid}
+.gr-row td{background:var(--bg2); font-size:6.8pt; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--pink); padding:4pt 5pt; border-bottom:.5pt solid var(--rule)}
+tfoot td{padding:5pt; border-top:1.2pt solid var(--ink); font-weight:600; background:var(--bg2)}
+.rt{text-align:right}
+caption{caption-side:top; text-align:left; font-size:7.4pt; color:var(--ink3); padding-bottom:4pt}
+td.c{font-weight:600; color:var(--pink); white-space:nowrap}
+
+.tg{display:inline-block; font-size:6.6pt; font-weight:700; letter-spacing:.06em; padding:.5pt 3.5pt; border:.5pt solid; white-space:nowrap; vertical-align:1pt}
+.tA{color:#B8006A; border-color:#EFB9D6; background:#FDF0F7}
+.tB{color:#0F6E58; border-color:#B4D8CD; background:#EAF3F0}
+.tC{color:#8F5400; border-color:#E7D0A6; background:#FCF3E4}
+.tD{color:#3C3F8F; border-color:#C2C4E8; background:#F0F1FB}
+
+ul{padding-left:11pt} ul li{margin-bottom:3pt; font-size:8.6pt; line-height:1.5}
+ul li::marker{color:var(--pink)}
+ul.q li::marker{color:var(--ink3)}
+ol{padding-left:12pt} ol li{margin-bottom:4.5pt; font-size:8.6pt; line-height:1.5}
+ol li::marker{color:var(--pink); font-weight:700; font-size:7.6pt}
+
+figure{border:.6pt solid var(--rule); padding:8pt; break-inside:avoid; background:#fff}
+figcaption{font-size:7.4pt; color:var(--ink3); line-height:1.5; margin-top:5pt}
+svg{display:block; width:100%; height:auto}
+svg text{font-family:"Pretendard",sans-serif; font-size:7px; fill:#4A4E57}
+svg text.l{fill:#DB0074; font-weight:600}
+svg text.t{fill:#15171B; font-weight:700; font-size:8px}
+svg text.g{fill:#8A9099}
+.hr{height:.6pt; background:var(--rule)}
+</style></head><body>
+<div style="padding-top:6mm">
+  <p class="eyebrow">Physical Check · 준비사항 &amp; 참고자료</p>
+  <h1 style="margin-top:7mm">피지컬 체크<br>준비사항</h1>
+  <p class="lead" style="margin-top:6mm; max-width:150mm">TYPE A · B · C · D를 각각 만들지 않습니다. 네 타입이 공유하는 <strong>데크 3종 · 기둥 1개 · 핸들바 3종</strong>을 골판지와 폼보드로 하루 만에 만들고, 갈아 끼우면서 전 항목을 실측합니다.</p>
+
+  <figure style="margin-top:8mm; border:0; padding:0">
+    <svg viewBox="0 0 720 188" role="img" aria-label="TYPE A B C D 네 가지 구성의 측면 개념도">
+      <g>
+        <g transform="translate(0,0)">
+          
+          <line x1="10" y1="138" x2="168" y2="138" stroke="#DCDCD6" stroke-width="1"/>
+          <rect x="22" y="126" width="133" height="5" fill="#15171B"/>
+          <rect x="116" y="52" width="5" height="74" fill="#15171B"/>
+          <g fill="none" stroke="#70767F" stroke-width="1.8" stroke-dasharray="3.5 2.5" stroke-linecap="round">
+            <circle cx="52" cy="30" r="9"/><path d="M52 39 L52 126"/><path d="M52 52 L112 66"/>
+          </g>
+          <rect x="126" y="62" width="18" height="64" fill="#FDF0F7" stroke="#DB0074" stroke-width="1.3"/>
+          <text class="t" x="10" y="158">TYPE A</text><text class="g" x="10" y="170">기립 × 전방</text><text class="l" x="10" y="182">백 = 컬럼 앞</text>
+        </g>
+        <g transform="translate(180,0)">
+          
+          <line x1="10" y1="138" x2="168" y2="138" stroke="#DCDCD6" stroke-width="1"/>
+          <rect x="22" y="126" width="133" height="5" fill="#15171B"/>
+          <rect x="116" y="60" width="5" height="66" fill="#15171B"/>
+          <rect x="30" y="88" width="40" height="4" fill="#15171B"/>
+          <g fill="none" stroke="#70767F" stroke-width="1.8" stroke-dasharray="3.5 2.5" stroke-linecap="round">
+            <circle cx="46" cy="26" r="9"/><path d="M46 35 L46 88"/><path d="M46 88 L82 88 L82 126"/><path d="M46 44 L112 62"/>
+          </g>
+          <rect x="84" y="48" width="17" height="60" transform="rotate(30 92.5 78)" fill="#FDF0F7" stroke="#DB0074" stroke-width="1.3"/>
+          <text class="t" x="10" y="158">TYPE B</text><text class="g" x="10" y="170">착석 × 사선통합</text><text class="l" x="10" y="182">백 = 사선 · 몸 가까이</text>
+        </g>
+        <g transform="translate(360,0)">
+          
+          <line x1="10" y1="138" x2="168" y2="138" stroke="#DCDCD6" stroke-width="1"/>
+          <rect x="18" y="126" width="142" height="5" fill="#15171B"/>
+          <rect x="124" y="52" width="5" height="74" fill="#15171B"/>
+          <g fill="none" stroke="#70767F" stroke-width="1.8" stroke-dasharray="3.5 2.5" stroke-linecap="round">
+            <circle cx="46" cy="30" r="9"/><path d="M46 39 L46 126"/><path d="M46 52 L120 66"/>
+          </g>
+          <rect x="80" y="62" width="18" height="64" fill="#FDF0F7" stroke="#DB0074" stroke-width="1.3"/>
+          <text class="t" x="10" y="158">TYPE C</text><text class="g" x="10" y="170">기립 × 중앙</text><text class="l" x="10" y="182">백 = 전면 중앙 · 팔로 감쌈</text>
+        </g>
+        <g transform="translate(540,0)">
+          
+          <line x1="10" y1="138" x2="168" y2="138" stroke="#DCDCD6" stroke-width="1"/>
+          <rect x="22" y="126" width="133" height="5" fill="#15171B"/>
+          <rect x="116" y="60" width="5" height="66" fill="#15171B"/>
+          <rect x="30" y="88" width="40" height="4" fill="#15171B"/>
+          <rect x="82" y="118" width="26" height="4" fill="#DB0074"/>
+          <g fill="none" stroke="#70767F" stroke-width="1.8" stroke-dasharray="3.5 2.5" stroke-linecap="round">
+            <circle cx="46" cy="26" r="9"/><path d="M46 35 L46 88"/><path d="M46 88 L88 88 L92 118"/><path d="M46 44 L112 62"/>
+          </g>
+          <rect x="126" y="62" width="18" height="64" fill="#FDF0F7" stroke="#DB0074" stroke-width="1.3"/>
+          <text class="t" x="10" y="158">TYPE D</text><text class="g" x="10" y="170">착석 × 전방</text><text class="l" x="10" y="182">백 = 컬럼 앞 + 발판 분리</text>
+        </g>
+      </g>
+    </svg>
+  </figure>
+
+  <div style="display:flex; border-top:.8pt solid var(--rule); border-bottom:.8pt solid var(--rule); margin-top:7mm">
+    <div style="flex:1; padding:5pt 8pt 5pt 0; border-right:.5pt solid var(--rule)">
+      <div class="kick">제작</div><div style="font-size:13pt; font-weight:700" class="n">반나절 <span style="font-size:7.5pt; font-weight:400; color:var(--ink3)">/ 2인</span></div>
+    </div>
+    <div style="flex:1; padding:5pt 8pt; border-right:.5pt solid var(--rule)">
+      <div class="kick">테스트</div><div style="font-size:13pt; font-weight:700" class="n">1일 <span style="font-size:7.5pt; font-weight:400; color:var(--ink3)">/ 4타입</span></div>
+    </div>
+    <div style="flex:1; padding:5pt 8pt; border-right:.5pt solid var(--rule)">
+      <div class="kick">공통 제작물</div><div style="font-size:13pt; font-weight:700" class="n">데크 3 · 기둥 1 · 핸들바 3</div>
+    </div>
+    <div style="flex:0 0 auto; padding:5pt 0 5pt 8pt">
+      <div class="kick">재료비</div><div style="font-size:13pt; font-weight:700" class="n">3만원대</div>
+    </div>
+  </div>
+
+  <div class="g21" style="margin-top:7mm; gap:10mm">
+    <div>
+      <div class="kick">목차</div>
+      <table style="font-size:8.4pt">
+        <tbody>
+          <tr><td class="c" style="width:22pt">00</td><td>제작 원칙 — 무엇을 만들고 무엇을 안 만드는가</td></tr>
+          <tr><td class="c">01</td><td>공통 제작 리스트 · 폼팩터 공통사항</td></tr>
+          <tr><td class="c">02</td><td>데크 — 사이즈 3종, 높이 3단</td></tr>
+          <tr><td class="c">03</td><td>기둥 — 1개 + 높이 3대역</td></tr>
+          <tr><td class="c">04</td><td>핸들바 — 폭 · 각도 3종</td></tr>
+          <tr><td class="c">05</td><td>골프백 · 크래들 · 시트 · 발판</td></tr>
+          <tr><td class="c">06</td><td>4타입 세팅표 · 전환 순서</td></tr>
+          <tr><td class="c">07</td><td>테스트 시트 (인쇄용)</td></tr>
+          <tr><td class="c">08</td><td>진행 방식 · 판정 기준</td></tr>
+          <tr><td class="c">09</td><td>준비물 · 일정</td></tr>
+          <tr><td class="c">10</td><td>참고자료 — 기준 치수표</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card am">
+      <div class="kick">전제 확인</div>
+      <h3>기준 치수표는 킥보드 샘플값입니다</h3>
+      <p class="mut" style="margin-top:4pt">인체공학 기준표는 <strong>서서 타는 성인 킥보드</strong> 기준입니다. 골프백 10~13kg이 얹히는 순간 축간거리 · 데크 폭 · 최대 하중은 그 표 밖으로 나갑니다. 세트포인트의 출발점으로만 쓰고, 판정은 실측값으로 합니다.</p>
+      <p class="mut" style="margin-top:6pt">특히 <strong>백이 들어간 뒤의 간섭 치수는 참고 자료가 없습니다.</strong> 이번 체크에서 처음 결정되는 값입니다.</p>
+    </div>
+  </div>
+</div>
+<div class="sec">
+  <div class="shead"><div class="no">00</div><div class="tx"><h2>제작 원칙</h2>
+    <p>피지컬 체크는 형태 확인이 아니라 <strong>치수 결정</strong>입니다. 예쁘게 만들 이유가 없고, 빨리 여러 값을 바꿔볼 수 있는 게 전부입니다.</p></div></div>
+
+  <div class="g3">
+    <div class="card gr"><div class="kick">원칙 1</div><h3>하중 받는 것만 단단하게</h3>
+      <p class="mut">체중이 실리는 건 <strong>데크 상판 하나뿐</strong>입니다. 밑을 책·박스가 받치고 폼보드는 표면만 담당합니다. 의자는 실물을 그대로 올리고, 기둥·핸들바·크래들은 전부 종이여도 됩니다.</p></div>
+    <div class="card gr"><div class="kick">원칙 2</div><h3>여러 개 만들지 말고 마킹</h3>
+      <p class="mut">기둥은 높이별로 자르지 않습니다. 긴 것 1개에 눈금을 긋고 <strong>핸들바를 옮겨 다는 것</strong>이 높이 변경입니다. 데크 크기도 큰 판 1장 + 외곽선 3종.</p></div>
+    <div class="card gr"><div class="kick">원칙 3</div><h3>고무줄로 묶는다</h3>
+      <p class="mut">테이프로 붙이면 뜯는 데 시간이 걸립니다. 백–크래들, 핸들바–기둥은 <strong>고무줄로 묶으면 재조정이 3초</strong>입니다. 최종 위치가 정해진 것만 테이프로 고정합니다.</p></div>
+  </div>
+
+  <div class="g2" style="margin-top:9pt">
+    <div class="card"><div class="kick">가장 큰 시간 절약</div><h3>0단계 · 바닥 테이프 리허설</h3>
+      <p class="mut" style="margin-top:4pt">만들기 <em>전에</em>, 바닥에 마스킹테이프로 데크 외곽 · 백 위치 · 휠베이스를 실측선으로 긋고 30분 서 봅니다. 재료비 0원, 준비 10분.</p>
+      <p class="mut" style="margin-top:5pt">여기서 축간거리 950 vs 1150, C타입 중앙 백의 승하차 같은 <strong>극단값의 절반이 그냥 걸러집니다.</strong> 걸러진 값은 리그로 다시 보지 않습니다.</p></div>
+    <div class="card am"><div class="kick">안전 · 반드시</div><h3>종이에 체중을 싣지 않는다</h3>
+      <p class="mut" style="margin-top:4pt">기둥과 핸들바는 <strong>손을 얹어 위치를 보는 용도</strong>이지 지지물이 아닙니다. 체중을 실으면 그대로 꺾입니다.</p>
+      <p class="mut" style="margin-top:5pt">데크는 밑을 받치는 책·박스가 <strong>틈 없이 촘촘한지</strong> 확인하고 올라갑니다. 승하차 동작은 옆에서 한 명이 받쳐 줍니다.</p></div>
+  </div>
+
+  <div class="hr" style="margin:11pt 0"></div>
+
+  <div class="g2">
+    <div class="card b"><div class="kick">만드는 것</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li><strong>데크 3종</strong> — 기립용 / 착석용 / 겸용 (판 1장 + 외곽선 3종)</li>
+        <li><strong>데크 높이 3단</strong> — 책·박스 위 폼보드 상판</li>
+        <li><strong>기둥 1개</strong> — 1,400mm, 높이 눈금 3대역</li>
+        <li><strong>핸들바 3종</strong> — 폼보드 평면, 폭·스윕각 다름</li>
+        <li><strong>백 크래들 1개</strong> — 각도 게이지 일체</li>
+        <li><strong>발판</strong> — 골판지 (의자는 실물을 데크 위에 올림)</li>
+      </ul></div>
+    <div class="card b"><div class="kick">만들지 않는 것</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li><strong>바퀴 · 모터 · 배터리</strong> — 주행을 요구하는 테스트 항목이 하나도 없습니다</li>
+        <li><strong>골프백 · 의자</strong> — 실물이 더 정확하고 공짜입니다. 클럽 헤드 돌출, 착좌감까지 그대로</li>
+        <li><strong>알루미늄 프로파일 리그</strong> — 치수가 확정된 뒤 2차 검증용으로 남겨둡니다</li>
+        <li><strong>타입별 목업 4대</strong> — 만드는 순간 치수를 못 바꿔서 쓸모가 사라집니다</li>
+        <li><strong>도색 · 마감</strong> — 사진에 잘 나오는 건 색이 아니라 테두리 색테이프와 격자 배경입니다</li>
+      </ul></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="shead"><div class="no">01</div><div class="tx"><h2>공통 제작 리스트 · 폼팩터 공통사항</h2>
+    <p>이것만 만들어두면 A · B · C · D 전환은 판 갈아 끼우고 위치 옮겨 묶는 것으로 끝납니다.</p></div></div>
+
+  <table>
+    <thead><tr><th style="width:26pt">코드</th><th style="width:78pt">품목</th><th style="width:112pt">사양</th><th style="width:74pt">재료</th><th>쓰는 곳 · 커버하는 타입</th></tr></thead>
+    <tbody>
+      <tr class="gr-row"><td colspan="5">하중부 — 밑을 책·박스가 받치는 부분</td></tr>
+      <tr><td class="c">K1</td><td><strong>데크 상판</strong></td><td class="n">800 × 250<br><span class="mut3">폼보드 5T 2겹 또는 골판지 4겹</span></td><td>폼보드 · 골판지</td><td>모든 타입의 발판. 위에 3종 외곽선을 색테이프로 미리 그어둠 <span class="tg tA">A</span> <span class="tg tB">B</span> <span class="tg tC">C</span> <span class="tg tD">D</span></td></tr>
+      <tr><td class="c">K2</td><td><strong>데크 높이 받침</strong></td><td class="n">100 / 130 / 160mm<br><span class="mut3">책·잡지·박스 적층</span></td><td>보유품</td><td>지상고 재현. 상판 밑에 틈 없이 촘촘히 <span class="tg tA">A</span> <span class="tg tB">B</span> <span class="tg tC">C</span> <span class="tg tD">D</span></td></tr>
+      <tr><td class="c">K3</td><td><strong>시트 = 실제 의자</strong></td><td class="n">좌면 400 / 460 / 520<br><span class="mut3">데크 위에 그대로 올림</span></td><td>보유 의자</td><td><strong>만들지 않음.</strong> 팔걸이·바퀴 없는 것 <span class="tg tB">B</span> <span class="tg tD">D</span></td></tr>
+      <tr class="gr-row"><td colspan="5">더미 — 전부 종이</td></tr>
+      <tr><td class="c">K4</td><td><strong>데크 외곽선 3종</strong></td><td class="n">기립 / 착석 / 겸용</td><td>색테이프 · 골판지 테두리</td><td>데크 길이·폭 판정. 상판 위에 색을 바꿔 긋기 <span class="tg tA">A</span> <span class="tg tB">B</span> <span class="tg tC">C</span> <span class="tg tD">D</span></td></tr>
+      <tr><td class="c">K5</td><td><strong>기둥</strong></td><td class="n">Ø40~60 × 1,400mm<br><span class="mut3">50mm 간격 높이 눈금</span></td><td>두꺼운 종이 말이 + 고무줄</td><td>핸들 높이 전 대역. 소켓 안에서 회전 <span class="tg tA">A</span> <span class="tg tB">B</span> <span class="tg tC">C</span> <span class="tg tD">D</span></td></tr>
+      <tr><td class="c">K6</td><td><strong>핸들바 3종</strong></td><td class="n">HB-1 / HB-2 / HB-3<br><span class="mut3">폭·스윕각이 다름</span></td><td>폼보드 5T + 그립 감기</td><td>백 위치별 핸들 형상 <span class="tg tA">A</span> <span class="tg tB">B</span> <span class="tg tC">C</span> <span class="tg tD">D</span></td></tr>
+      <tr><td class="c">K7</td><td><strong>백 크래들</strong></td><td class="n">V홈 + 각도 게이지<br><span class="mut3">0/15/30/45/60°</span></td><td>골판지 + 고무줄</td><td>백 거치 위치·각도·높이 <span class="tg tA">A</span> <span class="tg tB">B</span> <span class="tg tC">C</span> <span class="tg tD">D</span></td></tr>
+      <tr><td class="c">K8</td><td><strong>발판</strong></td><td class="n">250×180 / 300×200<br><span class="mut3">데크 위 얹기</span></td><td>골판지</td><td>착석 시 발 지지 위치·면적 <span class="tg tD">D</span></td></tr>
+      <tr><td class="c">K9</td><td><strong>골프백</strong></td><td class="n">실물 캐디백<br><span class="mut3">Ø230 · H890~950 · 10~13kg</span></td><td>보유 · 대여</td><td>전 간섭 항목 <span class="tg tA">A</span> <span class="tg tB">B</span> <span class="tg tC">C</span> <span class="tg tD">D</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="g3" style="margin-top:9pt">
+    <div class="card"><div class="kick">기록 킷</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li><strong>그리드 배경</strong> — 전지에 100mm 격자. 사진에서 치수를 나중에 읽는 가장 싼 방법</li>
+        <li><strong>삼각대 자리 테이프</strong> — 측면·정면 2곳 바닥에 X 표시</li>
+        <li><strong>테스트 시트</strong> — 07장 인쇄해 클립보드에</li>
+      </ul></div>
+    <div class="card"><div class="kick">고무줄을 쓰는 곳</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li>백 ↔ 크래들 결속 — 각도 바꿀 때마다 풀고 조임</li>
+        <li>핸들바 ↔ 기둥 — 높이·핸들바 종류 교체</li>
+        <li>발판 ↔ 데크 — 위치 이동</li>
+        <li>폼보드 임시 접합 — 글루건은 최종 확정된 곳만</li>
+      </ul></div>
+    <div class="card"><div class="kick">색 구분</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li>데크 외곽선 3종을 <strong>서로 다른 색</strong>으로 — 사진에서 어느 세팅인지 바로 읽힘</li>
+        <li>기둥 높이 눈금은 <strong>50 단위 짧게 · 100 단위 길게</strong></li>
+        <li>그립 127mm 구간은 색테이프로 칠하기</li>
+      </ul></div>
+  </div>
+</div>
+<div class="sec">
+  <div class="shead"><div class="no">02</div><div class="tx"><h2>데크 — 사이즈 3종, 높이 3단</h2>
+    <p>판은 <strong>가장 큰 것 한 장</strong>만 만들고, 3종 크기는 그 위에 색테이프로 외곽선을 그어 구분합니다. 높이는 밑에 책을 쌓아 바꿉니다.</p></div></div>
+
+  <div class="g21">
+    <figure>
+      <svg viewBox="0 0 480 240" role="img" aria-label="데크 3종 평면 비교. 기립용 480×185, 겸용 680×240, 착석용 800×250 밀리미터">
+        <text class="t" x="4" y="12">데크 외곽선 3종 · 평면 (뒤끝 정렬)</text>
+        <line x1="40" y1="30" x2="40" y2="215" stroke="#8A9099" stroke-width="0.8" stroke-dasharray="3 2.5"/>
+        <text class="g" x="4" y="220">뒤끝</text>
+        <rect x="40" y="46" width="400" height="125" fill="none" stroke="#8A9099" stroke-width="1" stroke-dasharray="4 3"/>
+        <rect x="40" y="52" width="350" height="113" fill="none" stroke="#8F5400" stroke-width="1.6"/>
+        <rect x="40" y="63" width="340" height="120" fill="none" stroke="#0F6E58" stroke-width="1.6"/>
+        <rect x="40" y="80" width="240" height="93" fill="none" stroke="#DB0074" stroke-width="2"/>
+        <text class="l" x="286" y="130">DK-1 · 480 × 185</text>
+        <text x="286" y="141" fill="#0F6E58" font-weight="600">DK-2 · 700 × 240</text>
+        <text x="286" y="42" fill="#8F5400" font-weight="600">DK-3 · 800 × 250</text>
+        <text class="g" x="286" y="196">상판 K1 = 800 × 250</text>
+      </svg>
+      <figcaption>세 외곽선을 <strong>서로 다른 색 마스킹테이프</strong>로 상판 위에 미리 그어둡니다. 사진에서 어느 세팅인지 색으로 바로 읽힙니다.</figcaption>
+    </figure>
+    <div class="card"><div class="kick">K1 · 상판 하나로 3종</div>
+      <h3>800 × 250 · 폼보드 5T 2겹</h3>
+      <p class="mut" style="margin-top:4pt">폼보드 한 겹은 사람이 올라서면 꺾입니다. <strong>2겹을 글루건으로 붙이고, 밑을 책이 촘촘히 받치게</strong> 하면 표면만 담당하므로 충분합니다. 골판지 4겹을 결 방향 교차로 붙여도 같습니다.</p>
+      <p class="mut" style="margin-top:6pt">발이 놓이는 자리에는 <strong>50mm 격자</strong>를 미리 그어두면 발 위치를 매번 재지 않아도 됩니다.</p>
+      <p class="mut" style="margin-top:6pt">기둥 소켓 구멍은 앞끝에서 <span class="n">40 / 140 / 240</span>mm 세 곳. 골판지 링을 3겹 겹쳐 붙이면 소켓이 됩니다.</p>
+    </div>
+  </div>
+
+  <table style="margin-top:9pt">
+    <caption>데크 사이즈 세트포인트 — 근거는 기준치수표(길이 400 / 480–560, 폭 150 / 165–205)</caption>
+    <thead><tr><th style="width:34pt">코드</th><th style="width:66pt">길이 × 폭</th><th style="width:58pt">성격</th><th style="width:52pt">적용</th><th>이 값에서 보는 것</th></tr></thead>
+    <tbody>
+      <tr><td class="c">DK-1</td><td class="n">480 × 185</td><td>기립 전용</td><td><span class="tg tA">A</span> <span class="tg tC">C</span></td><td>두 발 앞뒤 배치가 성립하는 기본값. 400까지 줄여도 되는지 함께 확인</td></tr>
+      <tr><td class="c">DK-2</td><td class="n">700 × 240</td><td>착석 전용</td><td><span class="tg tB">B</span> <span class="tg tD">D</span></td><td>시트 하부 + 발판까지. 앉으면 발이 앞으로 나가므로 길이가 늘어남</td></tr>
+      <tr><td class="c">DK-3</td><td class="n">800 × 250</td><td>겸용 · 확장</td><td><span class="tg tC">C</span> 겸용</td><td>C타입은 백이 데크 중앙을 점유하므로 기립인데도 큽니다. 서기·앉기 겸용 성립 여부도 여기서</td></tr>
+    </tbody>
+  </table>
+
+  <div class="g21" style="margin-top:9pt">
+    <div class="card gr"><div class="kick">K2 · 데크 높이</div><h3>책 위에 폼보드 — 3단</h3>
+      <p class="mut" style="margin-top:4pt">하중은 <strong>책·잡지·박스가 전부 받습니다.</strong> 폼보드 상판은 표면일 뿐입니다. 두꺼운 책 한 권이 30~40mm, A4 잡지 묶음이나 라면박스도 좋습니다.</p>
+      <p class="mut" style="margin-top:5pt">받침은 상판 밑에 <strong>틈 없이 촘촘히</strong> — 특히 네 모서리와 발이 놓이는 자리 밑. 높이 변경 2분.</p>
+    </div>
+    <table>
+      <thead><tr><th style="width:26pt">코드</th><th>받침</th><th>상면</th><th>실차 지상고</th></tr></thead>
+      <tbody>
+        <tr><td class="c">H0</td><td class="n">없음 (바닥)</td><td class="n">10mm</td><td class="mut3">리허설 기준선</td></tr>
+        <tr><td class="c">H1</td><td class="n">90</td><td class="n">100mm</td><td class="n">약 90 · 최소</td></tr>
+        <tr><td class="c">H2</td><td class="n">120</td><td class="n">130mm</td><td class="n">약 120 · 기본안</td></tr>
+        <tr><td class="c">H3</td><td class="n">150</td><td class="n">160mm</td><td class="n">약 150 · 권장 상한</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mut" style="margin-top:7pt; font-size:8.4pt"><strong>주의 —</strong> 데크 높이는 서 있는 자세로는 세 값이 거의 구분되지 않습니다. 차이는 <strong>승하차와 발 올리기</strong>에서 납니다. H1~H3 비교는 반드시 승하차 동작을 5회씩 반복해서 판단하세요.</p>
+</div>
+
+<div class="sec">
+  <div class="shead"><div class="no">03</div><div class="tx"><h2>기둥 — 1개 + 높이 3대역</h2>
+    <p>높이 조정이 되므로 기둥을 3개 만들 필요가 없습니다. 긴 것 1개에 눈금을 긋고 <strong>핸들바를 옮겨 묶는 것</strong>이 높이 변경입니다.</p></div></div>
+
+  <div class="g21">
+    <div class="card"><div class="kick">K5 · 기둥</div><h3>두꺼운 종이를 말아서 · 1개</h3>
+      <p class="mut" style="margin-top:4pt"><strong>만드는 법</strong> — 두꺼운 종이·골판지를 <span class="n">Ø40~60</span>으로 단단히 말고 <strong>고무줄을 세 군데 조입니다.</strong> 손을 얹는 용도라 이걸로 충분히 뻣뻣합니다. 길이 <span class="n">1,400mm</span>. 집에 포스터통·랩 심지가 있으면 그걸 쓰면 더 빠릅니다.</p>
+      <p class="mut" style="margin-top:5pt"><strong>눈금</strong> — 발판 상면 기준 <span class="n">800~1250</span>을 50mm 간격으로. 만들 때 <em>미리 다 그어둘 것</em> — 제작 시간의 절반은 "지금 몇 mm지?"를 재는 시간입니다.</p>
+      <p class="mut" style="margin-top:5pt"><strong>하단 100mm</strong>는 소켓에 들어가므로 눈금은 그 위부터. 소켓 안에서 기둥이 돌아가므로 <strong>±45° 조향 간섭 테스트</strong>가 그대로 됩니다.</p>
+    </div>
+    <table>
+      <caption>높이 대역 — 발판 상면 기준</caption>
+      <thead><tr><th style="width:44pt">대역</th><th style="width:78pt">세트포인트</th><th>적용 · 근거</th></tr></thead>
+      <tbody>
+        <tr><td class="c">기립</td><td class="n">950 / <strong>1050</strong> / 1150 / 1200</td><td><span class="tg tA">A</span> <span class="tg tC">C</span> 허리~배꼽. 기준표 최소 950, 권장 1000–1200</td></tr>
+        <tr><td class="c">착석</td><td class="n">800 / <strong>850</strong> / 950 / 1000</td><td><span class="tg tB">B</span> <span class="tg tD">D</span> 착좌 어깨 높이 기준. 팔꿈치 100~120° 확보</td></tr>
+        <tr><td class="c">겸용</td><td class="n">950 ~ 1050</td><td>서기·앉기 둘 다 성립하는 대역이 실제로 있는지 확인</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mut" style="margin-top:8pt; font-size:8.4pt">기둥 소켓 3개소(앞끝에서 <span class="n">40 / 140 / 240</span>mm)로 <strong>핸들–탑승자 거리</strong>와 축간거리 배분을 기둥 하나로 바꿉니다. 착석 타입(B·D)은 시트가 뒤에 있으므로 중앙 소켓을, 기립 타입(A·C)은 앞 소켓을 기본으로 씁니다.</p>
+</div>
+<div class="sec">
+  <div class="shead"><div class="no">04</div><div class="tx"><h2>핸들바 — 폭 · 각도 3종</h2>
+    <p>골프백이 어디 있느냐에 따라 팔이 지나가는 길이 달라지므로, 핸들바는 <strong>폭만이 아니라 스윕 각도</strong>가 함께 바뀝니다. 폼보드를 위에서 본 형상대로 자르면 폭과 각도가 한 번에 재현됩니다.</p></div></div>
+
+  <figure>
+    <svg viewBox="0 0 700 205" role="img" aria-label="핸들바 3종 평면 형상 비교">
+      <g transform="translate(0,0)">
+        <text class="t" x="8" y="12">HB-1 · 스트레이트</text><text class="g" x="8" y="24">백이 앞에 있을 때</text>
+        <line x1="110" y1="42" x2="110" y2="150" stroke="#DCDCD6" stroke-width="0.8" stroke-dasharray="3 2.5"/>
+        <path d="M28.4 78 L191.6 78" stroke="#15171B" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M28.4 78 L71.4 78 M148.6 78 L191.6 78" stroke="#DB0074" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <circle cx="110" cy="78" r="6" fill="#fff" stroke="#15171B" stroke-width="2"/>
+        <line x1="28.4" y1="106" x2="191.6" y2="106" stroke="#8A9099" stroke-width="0.8"/>
+        <line x1="28.4" y1="102" x2="28.4" y2="110" stroke="#8A9099"/><line x1="191.6" y1="102" x2="191.6" y2="110" stroke="#8A9099"/>
+        <text class="l" x="110" y="120" text-anchor="middle">폭 480 · 스윕 0°</text>
+        <text class="g" x="110" y="146" text-anchor="middle">↑ 진행 방향</text>
+        <text class="g" x="110" y="168" text-anchor="middle">TYPE A · D</text>
+      </g>
+      <g transform="translate(240,0)">
+        <text class="t" x="8" y="12">HB-2 · 와이드 백스윕</text><text class="g" x="8" y="24">백이 안쪽(중앙)에 있을 때</text>
+        <line x1="110" y1="42" x2="110" y2="150" stroke="#DCDCD6" stroke-width="0.8" stroke-dasharray="3 2.5"/>
+        <path d="M15 94.6 L110 60 L205 94.6" stroke="#15171B" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M15 94.6 L55.4 79.9 M164.6 79.9 L205 94.6" stroke="#DB0074" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <circle cx="110" cy="60" r="6" fill="#fff" stroke="#15171B" stroke-width="2"/>
+        <path d="M143 60 A33 33 0 0 1 141.3 71.3" fill="none" stroke="#DB0074" stroke-width="1.2"/>
+        <text class="l" x="150" y="58">20°</text>
+        <line x1="15" y1="112" x2="205" y2="112" stroke="#8A9099" stroke-width="0.8"/>
+        <line x1="15" y1="108" x2="15" y2="116" stroke="#8A9099"/><line x1="205" y1="108" x2="205" y2="116" stroke="#8A9099"/>
+        <text class="l" x="110" y="126" text-anchor="middle">폭 560 · 스윕 20°</text>
+        <text class="g" x="110" y="146" text-anchor="middle">백을 사이에 두고 팔을 벌림</text>
+        <text class="g" x="110" y="168" text-anchor="middle">TYPE C</text>
+      </g>
+      <g transform="translate(480,0)">
+        <text class="t" x="8" y="12">HB-3 · 라이즈 + 백스윕</text><text class="g" x="8" y="24">백이 기울어져 있을 때</text>
+        <line x1="110" y1="42" x2="110" y2="150" stroke="#DCDCD6" stroke-width="0.8" stroke-dasharray="3 2.5"/>
+        <path d="M25 75 L110 60 L195 75" stroke="#15171B" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M25 75 L67.3 67.5 M152.7 67.5 L195 75" stroke="#DB0074" stroke-width="7" fill="none" stroke-linecap="round"/>
+        <circle cx="110" cy="60" r="6" fill="#fff" stroke="#15171B" stroke-width="2"/>
+        <path d="M143 60 A33 33 0 0 1 142.5 65.7" fill="none" stroke="#DB0074" stroke-width="1.2"/>
+        <text class="l" x="150" y="58">10°</text>
+        <line x1="25" y1="100" x2="195" y2="100" stroke="#8A9099" stroke-width="0.8"/>
+        <line x1="25" y1="96" x2="25" y2="104" stroke="#8A9099"/><line x1="195" y1="96" x2="195" y2="104" stroke="#8A9099"/>
+        <text class="l" x="110" y="114" text-anchor="middle">폭 500 · 스윕 10° · 라이즈 +30</text>
+        <text class="g" x="110" y="146" text-anchor="middle">사선 백 상단을 넘어감</text>
+        <text class="g" x="110" y="168" text-anchor="middle">TYPE B</text>
+      </g>
+    </svg>
+    <figcaption>위에서 본 형상입니다. 굵은 분홍이 그립 구간(127mm). <strong>폼보드 5T를 2겹 붙여 이 형상대로 자르면</strong> 지관을 구부리는 것보다 빠르고, 폭과 스윕각이 동시에 정확히 나옵니다. 그립 구간만 종이를 감아 Ø32의 원통감을 냅니다. 기둥과는 고무줄로 묶어 30초 만에 교체합니다.</figcaption>
+  </figure>
+
+  <table style="margin-top:9pt">
+    <thead><tr><th style="width:38pt">코드</th><th style="width:44pt">적용</th><th style="width:104pt">폭 · 각도</th><th>왜 이 형상인가 · 이 종에서 보는 것</th></tr></thead>
+    <tbody>
+      <tr><td class="c">HB-1<br><span class="mut3" style="font-weight:400">스트레이트</span></td><td><span class="tg tA">A</span> <span class="tg tD">D</span></td><td class="n">폭 480 (420~560)<br>스윕 0°</td><td>백이 컬럼 앞이라 핸들 주변이 비어 있음. 표준 킥보드 형상으로 충분한지, 백과의 높이 간격만 확보되면 되는지 확인</td></tr>
+      <tr><td class="c">HB-2<br><span class="mut3" style="font-weight:400">와이드 백스윕</span></td><td><span class="tg tC">C</span></td><td class="n">폭 560 (520~620)<br>스윕 10 / <strong>20</strong> / 30°</td><td>백을 사이에 두고 양팔을 벌려야 하므로 폭이 넓고, 팔이 백을 감싸는 자세라 그립이 몸쪽으로 열려야 함. <strong>스윕각이 클수록 백 간섭은 줄지만 조향 감각이 둔해짐</strong> — 그 경계를 찾는 것이 이 종의 목적</td></tr>
+      <tr><td class="c">HB-3<br><span class="mut3" style="font-weight:400">라이즈+백스윕</span></td><td><span class="tg tB">B</span></td><td class="n">폭 500 (460~540)<br>스윕 <strong>10</strong> / 20° · 라이즈 +30</td><td>사선 백의 상단이 핸들 영역을 침범하므로, 핸들이 백 위로 넘어가거나 뒤로 물러나야 함. 라이즈(상방 오프셋)와 스윕 중 어느 쪽으로 피하는 게 자연스러운지 비교</td></tr>
+    </tbody>
+  </table>
+
+  <div class="g3" style="margin-top:9pt">
+    <div class="card b"><div class="kick">만드는 법</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li>폼보드 5T <strong>2겹</strong>을 글루건으로 붙여 두께 10mm 확보</li>
+        <li>상면 형상대로 커터로 자름 (곡선 없이 직선 2~3개면 충분)</li>
+        <li>그립 127mm 구간에 두꺼운 종이를 말아 감아 <strong>Ø32</strong>로</li>
+        <li>기둥 결합부는 폼보드에 기둥 지름만큼 구멍 → 고무줄 결속</li>
+      </ul></div>
+    <div class="card b"><div class="kick">그립 지름 30 / 32 / 34</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li>기본 Ø30으로 감기</li>
+        <li>마스킹테이프 여러 겹 → Ø32</li>
+        <li>폼시트 1T 슬리브 한 장 → Ø34</li>
+        <li>판정은 <strong>30초 파지 후</strong>의 피로·미끄러짐 응답으로</li>
+      </ul></div>
+    <div class="card b"><div class="kick">폭은 마킹으로도 흡수</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li>3종 각각에 중심 기준 ±210 / ±240 / ±260 / ±280 눈금</li>
+        <li>손을 옮겨 잡는 것이 곧 폭 변경 <span class="n">(420 / 480 / 520 / 560)</span></li>
+        <li>기준표 최소 420, 권장 440~560</li>
+      </ul></div>
+  </div>
+</div>
+<div class="sec">
+  <div class="shead"><div class="no">05</div><div class="tx"><h2>골프백 · 크래들 · 의자 · 발판</h2>
+    <p>34개 항목 중 <strong>20개 이상이 골프백 간섭</strong> 항목입니다. 데크·핸들 치수는 기준표에 답이 반쯤 나와 있지만, 백이 들어간 뒤의 간섭은 자료가 없습니다.</p></div></div>
+
+  <div class="g2">
+    <div class="card gr"><div class="kick">K9 · 골프백</div><h3>실물 캐디백을 그대로</h3>
+      <p class="mut" style="margin-top:4pt">구경 9인치(<span class="n">Ø230</span>) · 높이 <span class="n">890~950</span> · 클럽 포함 <span class="n">10~13kg</span>. 무게와 클럽 헤드 돌출까지 한 번에 재현되므로 더미보다 압도적으로 정확합니다.</p>
+      <p class="mut" style="margin-top:5pt"><strong>반드시 클럽을 꽂은 상태로</strong> 테스트하세요. 헤드가 백 상단에서 <span class="n">150~250mm</span> 더 올라오고, 시야·간섭 판정은 거기서 갈립니다.</p>
+      <p class="mut" style="margin-top:5pt">실물이 없으면 골판지를 말아 <span class="n">Ø230 × H900</span> 원통을 만들고 잡지를 채워 10kg을 맞춥니다.</p>
+    </div>
+    <div class="card"><div class="kick">K7 · 백 크래들</div><h3>V홈 + 각도 게이지 일체</h3>
+      <p class="mut" style="margin-top:4pt">백 하단을 받치는 <strong>V자 홈 하나</strong>와 상단을 잡는 <strong>고무줄 밴드 하나</strong>. 이게 전부입니다.</p>
+      <p class="mut" style="margin-top:5pt">옆면에 <span class="n">0 / 15 / 30 / 45 / 60°</span> 부채꼴을 그려두고 폼보드 지지대를 꽂아 각도를 고정합니다. 각도를 바꿀 때는 고무줄만 풀면 됩니다.</p>
+      <p class="mut" style="margin-top:5pt"><strong>거치 높이도 조절 대상</strong>입니다 — 크래들 밑에 골판지를 겹쳐 백 하단을 <span class="n">0 / 100 / 150 / 200mm</span>로 올립니다. TYPE D의 무게중심 · 전륜 간섭 항목이 여기에 달려 있습니다.</p>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-top:9pt">
+    <div class="card gr"><div class="kick">K3 · 의자 <span class="tg tB">B</span> <span class="tg tD">D</span></div><h3>실제 의자를 데크 위에 올린다</h3>
+      <p class="mut" style="margin-top:4pt">만들지 않습니다. 기준표의 안장 높이는 <strong>좌면~데크</strong> 기준이므로, 데크 위에 의자를 올리면 그 의자의 좌면 높이가 곧 시트 높이가 됩니다.</p>
+      <ul class="q mut" style="margin-top:5pt">
+        <li><strong>높이 조절</strong> — 좌면에 방석·책을 얹어 <span class="n">400 / 460 / 520</span>. 가스리프트 사무의자가 있으면 무단 조절이라 가장 좋습니다</li>
+        <li><strong>팔걸이 없는 것</strong> — 승·하차 측면 공간 항목이 팔걸이 때문에 왜곡됩니다</li>
+        <li><strong>바퀴 없는 것</strong> — 데크 위에서 밀립니다. 바퀴 의자밖에 없으면 다리 밑을 고정하세요</li>
+        <li><strong>좌면 크기</strong>는 실제 의자가 크더라도 골판지·테이프로 <span class="n">300×350 / 350×430</span> 외곽선을 좌면 위에 표시해 판정</li>
+        <li>의자 다리 4곳 밑에 데크 받침(책)이 정확히 오도록 배치</li>
+      </ul>
+    </div>
+    <div class="card"><div class="kick">K8 · 발판 <span class="tg tD">D</span></div><h3>골판지 한 장, 위치가 핵심</h3>
+      <p class="mut" style="margin-top:4pt">TYPE D는 발판이 데크와 분리된 별도 항목입니다. 앉으면 발이 앞으로 나가므로 <strong>크기보다 위치</strong>가 무릎 각도를 결정합니다.</p>
+      <ul class="q mut" style="margin-top:5pt">
+        <li><strong>위치</strong> — 시트 전방 <span class="n">350 / 450 / 550</span>mm</li>
+        <li><strong>크기</strong> — <span class="n">250×180 / 300×200</span></li>
+        <li>데크 위에 얹고 고무줄로 묶어 위치 이동. 살짝 띄우려면 골판지를 겹칩니다</li>
+        <li>판정은 <strong>무릎 각도 100~120°</strong>와 발바닥 전체 지지 여부</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="shead"><div class="no">06</div><div class="tx"><h2>4타입 세팅표 · 전환 순서</h2>
+    <p>공통 킷은 그대로 두고 백 크래들 위치와 의자, 핸들바 종류만 바꿉니다. 굵은 값이 기본안입니다.</p></div></div>
+
+  <table>
+    <thead><tr><th style="width:76pt">항목</th><th>TYPE A<br><span class="mut3" style="font-weight:400; text-transform:none; letter-spacing:0">기립 × 전방</span></th><th>TYPE B<br><span class="mut3" style="font-weight:400; text-transform:none; letter-spacing:0">착석 × 사선통합</span></th><th>TYPE C<br><span class="mut3" style="font-weight:400; text-transform:none; letter-spacing:0">기립 × 중앙</span></th><th>TYPE D<br><span class="mut3" style="font-weight:400; text-transform:none; letter-spacing:0">착석 × 전방</span></th></tr></thead>
+    <tbody>
+      <tr><td>데크 외곽선</td><td class="n"><strong>DK-1</strong> 480×185</td><td class="n"><strong>DK-2</strong> 700×240</td><td class="n">DK-1 / <strong>DK-3</strong> 800×250</td><td class="n"><strong>DK-2</strong> 700×240</td></tr>
+      <tr><td>데크 높이</td><td class="n">H1 / <strong>H2</strong> / H3</td><td class="n"><strong>H2</strong></td><td class="n">H1 / <strong>H2</strong> / H3</td><td class="n"><strong>H2</strong></td></tr>
+      <tr><td>기둥 소켓</td><td class="n"><strong>앞 40</strong></td><td class="n"><strong>중앙 140</strong></td><td class="n"><strong>앞 40</strong></td><td class="n">중앙 140 / 뒤 240</td></tr>
+      <tr><td>핸들 높이</td><td class="n">950 / <strong>1050</strong> / 1150 / 1200</td><td class="n">800 / <strong>850</strong> / 950</td><td class="n">1050 / <strong>1150</strong> / 1200</td><td class="n">850 / <strong>950</strong> / 1000</td></tr>
+      <tr><td>핸들바</td><td class="n"><strong>HB-1</strong> 480 · 0°</td><td class="n"><strong>HB-3</strong> 500 · 10° · 라이즈</td><td class="n"><strong>HB-2</strong> 560 · 20°</td><td class="n"><strong>HB-1</strong> 480 · 0°</td></tr>
+      <tr><td>백 위치</td><td class="n">컬럼 전방<br>돌출 0 / <strong>100</strong> / 200</td><td class="n">컬럼–좌석 사이<br>사선</td><td class="n">컬럼 후방<br>탑승자 전면 중앙</td><td class="n">컬럼 전방<br>돌출 0 / <strong>100</strong> / 200</td></tr>
+      <tr><td>백 거치 각도</td><td class="n">0 / <strong>10</strong> / 20°</td><td class="n">30 / <strong>45</strong> / 60°</td><td class="n"><strong>0</strong> / 15°</td><td class="n">0 / <strong>10</strong> / 20°</td></tr>
+      <tr><td>백 하단 높이</td><td class="n"><strong>0</strong> (데크)</td><td class="n"><strong>0</strong> ~ 100</td><td class="n"><strong>0</strong> (데크)</td><td class="n">0 / <strong>100</strong> / 150 / 200</td></tr>
+      <tr><td>의자</td><td>없음</td><td class="n">좌면 400 / <strong>460</strong> / 520</td><td>없음</td><td class="n">좌면 400 / <strong>460</strong> / 520</td></tr>
+      <tr><td>발판</td><td>데크 겸용</td><td>데크 겸용</td><td>데크 겸용</td><td class="n">시트 전방 350 / <strong>450</strong> / 550</td></tr>
+    </tbody>
+  </table>
+
+  <div class="card b" style="margin-top:10pt">
+    <div class="kick">전환 순서 — A → D → B → C 가 작업량 최소</div>
+    <table style="margin-top:3pt">
+      <thead><tr><th style="width:52pt">전환</th><th style="width:40pt">소요</th><th>바꾸는 것</th></tr></thead>
+      <tbody>
+        <tr><td class="c">A → D</td><td class="n">약 5분</td><td>의자를 데크에 올리고 발판 배치 · 핸들 높이 1050 → 950 · <strong>핸들바와 백 위치는 그대로</strong> (둘 다 전방 백)</td></tr>
+        <tr><td class="c">D → B</td><td class="n">약 5분</td><td>백을 사선 45°로 세우고 좌석 쪽으로 당김 · 핸들바 HB-1 → HB-3 · 핸들 높이 950 → 850</td></tr>
+        <tr><td class="c">B → C</td><td class="n">약 8분</td><td>의자·발판 제거 · 백을 컬럼 뒤 중앙에 직립 · 핸들바 HB-3 → HB-2 · 데크 외곽선 DK-3 · 핸들 높이 1150</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="sec">
+  <div class="shead"><div class="no">07</div><div class="tx"><h2>테스트 시트 ① 공통 · TYPE A · C</h2>
+    <p>기획서의 항목을 그대로 옮기고, 빈칸이던 <strong>테스트 범위에 출발 세트포인트</strong>를 채웠습니다. 인쇄해서 클립보드에 끼우고 씁니다. 굵은 값이 기준 세팅.</p></div></div>
+  <table>
+    <thead><tr><th style="width:38pt">구분</th><th style="width:96pt">테스트 항목</th><th style="width:104pt">세트포인트</th><th style="width:60pt">방법</th><th>합격 판정</th><th style="width:36pt">결과</th></tr></thead>
+    <tbody>
+      <tr class="gr-row"><td colspan="6">기본 테스트 · A B C D 공통</td></tr>
+      <tr><td>탑승</td><td>데크보드 길이</td><td class="n">400 / <strong>480</strong> / 560 / 700</td><td>DK 외곽선</td><td>두 발 앞뒤 배치, 뒤꿈치가 선 밖으로 나가지 않음</td><td></td></tr>
+      <tr><td>탑승</td><td>데크보드 폭</td><td class="n">150 / <strong>185</strong> / 205 / 240</td><td>DK 외곽선</td><td>발 바깥선이 선 안, 좌우 이동 여유 있음</td><td></td></tr>
+      <tr><td>탑승</td><td>데크 높이 (지상고)</td><td class="n">100 / <strong>130</strong> / 160</td><td>K2 받침</td><td>승하차 5/5 성공, 3초 이내</td><td></td></tr>
+      <tr><td>조작</td><td>핸들 높이</td><td class="n">950 / <strong>1050</strong> / 1150 / 1200</td><td>K5 눈금</td><td>팔꿈치 120~150°, 어깨 들림 없음</td><td></td></tr>
+      <tr><td>조작</td><td>핸들 폭</td><td class="n">420 / <strong>480</strong> / 520 / 560</td><td>K6 마킹</td><td>어깨너비 ±40 이내, 손목 중립</td><td></td></tr>
+      <tr><td>조작</td><td>그립 지름</td><td class="n">30 / <strong>32</strong> / 34</td><td>감기 두께</td><td>30초 파지 후 피로·미끄러짐 없음</td><td></td></tr>
+      <tr><td>조작</td><td>핸들–탑승자 거리</td><td class="n">350 / <strong>450</strong> / 550</td><td>K5 소켓</td><td>상체 전경 ≤15°, 팔 과신전·과굴곡 없음</td><td></td></tr>
+      <tr><td>차체</td><td>전·후륜 간격</td><td class="n">950 / <strong>1050</strong> / 1150</td><td>바닥 테이프</td><td>전장·회전반경 체감. 정적 리그에선 참고값</td><td></td></tr>
+      <tr class="gr-row"><td colspan="6">TYPE A · STANDING × FRONT — 개방적인 스포티한 프로모션</td></tr>
+      <tr><td>백 배치</td><td>골프백–핸들 높이 간격</td><td class="n">50 / <strong>100</strong> / 150</td><td>K7 높이</td><td>조향 ±45°에서 손이 백에 닿지 않음 (≥30mm)</td><td></td></tr>
+      <tr><td>백 배치</td><td>골프백 전방 돌출량</td><td class="n">0 / <strong>100</strong> / 200</td><td>K7 전후</td><td>전장 최소화 대비 백 지지 안정. 클럽 인출 가능</td><td></td></tr>
+      <tr><td>백 배치</td><td>골프백 거치 각도</td><td class="n">0 / <strong>10</strong> / 20°</td><td>K7 게이지</td><td>클럽 접근 용이 + 전방 시야 확보</td><td></td></tr>
+      <tr><td>특화</td><td>백–핸들 간격</td><td class="n">80 / <strong>120</strong> / 160</td><td>K7 + HB-1</td><td>핸들 조작과 클럽 인출이 서로 간섭하지 않음</td><td></td></tr>
+      <tr class="gr-row"><td colspan="6">TYPE C · STANDING × CENTER — 전면을 감싸는 면적인 프로모션</td></tr>
+      <tr><td>탑승</td><td>데크보드 크기</td><td class="n">DK-1 / <strong>DK-3</strong></td><td>DK 외곽선</td><td>백을 두고도 두 발이 간섭 없이 서짐</td><td></td></tr>
+      <tr><td>조작</td><td>핸들 각도 (스윕백)</td><td class="n">0 / 10 / <strong>20</strong> / 30°</td><td>HB-2</td><td>백 간섭이 사라지는 최소각. 조향 감각이 둔해지기 직전</td><td></td></tr>
+      <tr><td>백 배치</td><td>골프백–탑승자 간격</td><td class="n">100 / <strong>150</strong> / 200</td><td>K7 전후</td><td>복부·상체와 백이 닿지 않음 (호흡·상체 회전 포함)</td><td></td></tr>
+      <tr><td>백 배치</td><td>골프백–핸들 관계</td><td class="n">양팔 폭 <strong>≥ 백폭+160</strong></td><td>HB-2 마킹</td><td>백을 사이에 두고 양팔이 자연스럽게 뻗어짐</td><td></td></tr>
+      <tr><td>백 배치</td><td>골프백 양측 팔 공간</td><td class="n">좌우 각 80 / <strong>100</strong> / 120</td><td>실측</td><td>팔이 백을 감싼 자세에서 조향 여유 확보</td><td></td></tr>
+      <tr><td>백 배치</td><td>골프백 거치 높이 / 각도</td><td class="n">상단 ≤1200 · <strong>0</strong> / 15°</td><td>K7</td><td>전방 시야 확보 + 팔 움직임 방해 없음</td><td></td></tr>
+      <tr><td>특화</td><td>승·하차 유효 폭</td><td class="n">≥300 / <strong>≥350</strong></td><td>동작 5회</td><td>중앙 백을 피해 측면 진입·이탈 5/5 성공</td><td></td></tr>
+      <tr><td>특화</td><td>회전 조작 시 간섭 범위</td><td class="n">±30 / <strong>±45</strong> / ±60°</td><td>기둥 회전</td><td>손·팔·핸들이 백과 충돌하지 않는 최대 조향각 기록</td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="sec">
+  <div class="shead"><div class="no">07</div><div class="tx"><h2>테스트 시트 ② TYPE B · D</h2>
+    <p>착석 타입. 의자를 데크 위에 올린 상태에서, 좌면~데크 높이를 시트 높이로 읽습니다.</p></div></div>
+  <table>
+    <thead><tr><th style="width:38pt">구분</th><th style="width:96pt">테스트 항목</th><th style="width:104pt">세트포인트</th><th style="width:60pt">방법</th><th>합격 판정</th><th style="width:36pt">결과</th></tr></thead>
+    <tbody>
+      <tr class="gr-row"><td colspan="6">TYPE B · SEATED × INTEGRATED — 몸에 가장 가깝게 붙는 캡슐형</td></tr>
+      <tr><td>착석</td><td>시트 높이</td><td class="n">400 / <strong>460</strong> / 520</td><td>의자 + 방석</td><td>무릎 100~120°, 발이 데크에 닿음, 승하차 가능</td><td></td></tr>
+      <tr><td>착석</td><td>시트 크기 (폭 × 깊이)</td><td class="n"><strong>300×350</strong> / 350×430</td><td>좌면 위 표시</td><td>안정적 착석, 체중 이동 시 미끄러짐 없음</td><td></td></tr>
+      <tr><td>착석</td><td>시트–핸들 거리</td><td class="n">450 / <strong>550</strong> / 650</td><td>K5 소켓</td><td>팔꿈치 100~120°, 어깨 부담 없음</td><td></td></tr>
+      <tr><td>조작</td><td>핸들 높이 / 폭</td><td class="n">800 / <strong>850</strong> / 950 · HB-3</td><td>K5 + HB-3</td><td>착석 자세에서 어깨·팔에 부담 없이 조작</td><td></td></tr>
+      <tr><td>착석</td><td>레그룸</td><td class="n">≥ 400</td><td>실측</td><td>무릎·발 자연 배치, 백과 무간섭</td><td></td></tr>
+      <tr><td>백 배치</td><td>골프백 거치 각도</td><td class="n">30 / <strong>45</strong> / 60°</td><td>K7 게이지</td><td>차체 연속감 + 클럽 접근 각도 확보</td><td></td></tr>
+      <tr><td>백 배치</td><td>골프백 상단 높이</td><td class="n">≤1000 / <strong>≤1100</strong> / ≤1200</td><td>눈높이 촬영</td><td>착석 시선 아래. 정면 시야 가림 없음</td><td></td></tr>
+      <tr><td>특화</td><td>골프백–무릎 간격</td><td class="n">80 / <strong>120</strong> / 180</td><td>실측</td><td>착석·조작 중 무릎이 백에 닿지 않음 (≥30mm)</td><td></td></tr>
+      <tr><td>특화</td><td>골프백–핸들 간격</td><td class="n">60 / <strong>100</strong> / 140</td><td>K7 + HB-3</td><td>조향 ±45°에서 손·핸들이 백에 닿지 않음</td><td></td></tr>
+      <tr><td>특화</td><td>골프백–시트 간격</td><td class="n">50 / <strong>100</strong> / 150</td><td>실측</td><td>착석 공간 침범 없이 전장 최소화</td><td></td></tr>
+      <tr><td>특화</td><td>승·하차 측면 공간</td><td class="n">≥350 / <strong>≥400</strong></td><td>동작 5회</td><td>사선 백을 피해 다리 넣고 빼기 5/5 성공</td><td></td></tr>
+      <tr class="gr-row"><td colspan="6">TYPE D · SEATING × FRONT — 개방적인 스포티한 프로모션 · 착좌</td></tr>
+      <tr><td>착석</td><td>시트 높이</td><td class="n">400 / <strong>460</strong> / 520</td><td>의자 + 방석</td><td>발이 발판에 안정적으로 닿고 무릎 100~120°</td><td></td></tr>
+      <tr><td>착석</td><td>시트 크기 (좌면 길이 / 폭)</td><td class="n"><strong>300×350</strong> / 350×430</td><td>좌면 위 표시</td><td>안정적인 착좌가 가능한 최소 좌면</td><td></td></tr>
+      <tr><td>착석</td><td>시트–핸들 거리</td><td class="n">450 / <strong>550</strong> / 650</td><td>K5 소켓</td><td>앉은 자세에서 팔을 과도하게 뻗거나 접지 않음</td><td></td></tr>
+      <tr><td>조작</td><td>핸들 높이</td><td class="n">850 / <strong>950</strong> / 1000</td><td>K5 눈금</td><td>착좌 어깨 높이 기준 자연스러운 조작 위치</td><td></td></tr>
+      <tr><td>탑승</td><td>발판 위치</td><td class="n">시트 전방 350 / <strong>450</strong> / 550</td><td>K8 이동</td><td>무릎 각도 100~120°, 발바닥 전체 지지</td><td></td></tr>
+      <tr><td>탑승</td><td>발판 크기</td><td class="n"><strong>250×180</strong> / 300×200</td><td>K8 교체</td><td>발 지지가 안정적인 최소 면적</td><td></td></tr>
+      <tr><td>백 배치</td><td>골프백 상단 높이</td><td class="n">≤1000 / <strong>≤1100</strong> / ≤1200</td><td>눈높이 촬영</td><td>착좌 눈높이(약 1200) 기준 전방 시야를 가리지 않음</td><td></td></tr>
+      <tr><td>백 배치</td><td>골프백–핸들 높이 간격</td><td class="n">50 / <strong>100</strong> / 150</td><td>K7 + HB-1</td><td>조향 시 손의 움직임이 백을 간섭하지 않음</td><td></td></tr>
+      <tr><td>백 배치</td><td>골프백 전방 돌출량</td><td class="n">0 / <strong>100</strong> / 200</td><td>K7 전후</td><td>전장 최소화하면서 백을 안정적으로 지지</td><td></td></tr>
+      <tr><td>특화</td><td>골프백 거치 높이 (하단)</td><td class="n">0 / <strong>100</strong> / 150 / 200</td><td>K7 밑 골판지</td><td>무게중심을 낮추면서 전륜 회전과 간섭하지 않는 하단 높이</td><td></td></tr>
+    </tbody>
+  </table>
+</div>
+<div class="sec">
+  <div class="shead"><div class="no">08</div><div class="tx"><h2>진행 방식 · 판정 기준</h2>
+    <p>세팅을 몇 번 바꾸느냐가 곧 소요 시간입니다. 여기서 반나절이 갈립니다.</p></div></div>
+
+  <div class="card gr"><div class="kick">시간을 반으로 줄이는 순서</div>
+    <ol style="margin-top:3pt">
+      <li><strong>기준 세팅부터 세운다</strong> — 각 타입의 기본안(굵은 값)으로 먼저 조립하고 사진·수치로 남깁니다. 이후 모든 판단은 "기준 대비"입니다.</li>
+      <li><strong>한 번에 한 축만 바꾼다</strong> — 데크 높이와 핸들 높이를 같이 바꾸면 무엇 때문에 불편한지 못 찾습니다. 바꾼 축 외에는 전부 기본안으로 되돌립니다.</li>
+      <li><strong>1차는 한 명이 전 세팅을 훑는다</strong> — 기준 피험자 1명이 약 45세팅을 돌며 명백히 탈락하는 값을 쳐냅니다. 보통 여기서 절반이 사라집니다.</li>
+      <li><strong>2차는 살아남은 후보만 여러 명이 본다</strong> — 45세팅 × 5명(675분)이 아니라 <strong>45세팅 × 1명 + 3세팅 × 4명 ≈ 170분</strong>이 됩니다.</li>
+      <li><strong>애매하면 그 자리에서 중간값을 만든다</strong> — 종이 리그의 장점입니다. 1050과 1150이 둘 다 애매하면 1100을 바로 만들어 확인합니다.</li>
+    </ol>
+  </div>
+
+  <div class="g2" style="margin-top:9pt">
+    <div class="card"><div class="kick">피험자 — 인원 수보다 신장 대역</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li><span class="n">155</span> 전후 — 여성 5%ile 근방. 승하차·발 닿음의 하한</li>
+        <li><span class="n">163 / 172 / 178</span> — 주 사용 대역</li>
+        <li><span class="n">186</span> 전후 — 남성 95%ile 근방. 무릎·팔 간섭의 상한</li>
+        <li>최소 3명, 권장 5명. <strong>캐디백을 실제로 들어본 사람</strong>을 1명 이상 포함하면 백 취급 동작의 현실성이 달라집니다</li>
+      </ul></div>
+    <div class="card"><div class="kick">한 세팅에서 하는 것 · 약 3분</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li><strong>승차</strong> — 측면 진입 5회. 옷·다리가 백에 닿으면 즉시 실패</li>
+        <li><strong>주행 자세 30초 유지</strong> — 팔꿈치 각, 상체 전경, 손목 각도 관찰</li>
+        <li><strong>조향 ±45°</strong> — 기둥을 소켓 안에서 돌려 손·팔·핸들이 백에 닿는지</li>
+        <li><strong>하차</strong> — 5회. 3초 이내 무접촉이 기준</li>
+        <li><strong>기록</strong> — 5점 척도 + 간섭 O/X + 사진 3컷(측면·정면·45°)</li>
+      </ul></div>
+  </div>
+
+  <div class="g2" style="margin-top:9pt">
+    <table>
+      <caption>판정 기준 · 공통</caption>
+      <thead><tr><th style="width:64pt">지표</th><th style="width:78pt">합격</th><th>측정 방법</th></tr></thead>
+      <tbody>
+        <tr><td>팔꿈치 각</td><td class="n">120~150°</td><td>측면 사진에서 측정 (착석은 100~120°)</td></tr>
+        <tr><td>상체 전경</td><td class="n">≤ 15°</td><td>측면 사진, 수직 대비</td></tr>
+        <tr><td>무릎 각 (착석)</td><td class="n">100~120°</td><td>측면 사진</td></tr>
+        <tr><td>손목</td><td>중립 (꺾임 없음)</td><td>정면·상면 사진</td></tr>
+        <tr><td>간섭 클리어런스</td><td class="n">≥ 30mm</td><td>동작 중 최근접부에 줄자. 옷 두께 포함</td></tr>
+        <tr><td>승하차</td><td class="n">3초 이내 · 무접촉</td><td>5회 중 5회 성공해야 합격</td></tr>
+        <tr><td>전방 시야</td><td>백 상단이 시선 아래</td><td>탑승자 눈높이에서 촬영해 가림 범위 확인</td></tr>
+      </tbody>
+    </table>
+    <div class="card am"><div class="kick">기록에서 실수하기 쉬운 것</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li><strong>삼각대 자리를 바닥에 테이프로 고정</strong> — 매 세팅을 같은 자리에서 찍어야 사진끼리 비교가 됩니다</li>
+        <li><strong>배경에 100mm 격자</strong> — 나중에 사진에서 치수를 읽을 수 있습니다. 없으면 실측을 다시 해야 합니다</li>
+        <li><strong>세팅값을 사진 안에 넣기</strong> — 데크 외곽선 색과 기둥 눈금이 사진에 보이게 촬영</li>
+        <li><strong>클럽을 꽂은 상태로</strong> — 헤드 돌출 150~250mm에서 시야·간섭이 갈립니다</li>
+        <li><strong>탈락 이유를 한 줄로</strong> — "불편함"이 아니라 "왼 무릎이 백에 닿음"</li>
+      </ul></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="shead"><div class="no">09</div><div class="tx"><h2>준비물 · 일정</h2>
+    <p>사야 할 건 여섯 가지뿐입니다. 나머지는 전부 스튜디오에 있는 것으로 해결됩니다.</p></div></div>
+
+  <table>
+    <caption>구매 목록 — 전부 다이소·문구점·화방에서 당일 조달</caption>
+    <thead><tr><th style="width:100pt">품목</th><th style="width:112pt">규격 · 수량</th><th>쓰는 곳</th></tr></thead>
+    <tbody>
+      <tr><td><strong>골판지 · 두꺼운 종이</strong><br><span class="mut3">큰 것</span></td><td class="n">가능한 한 큰 것<br>넉넉히 6~8장</td><td>데크 상판(겹쳐서) · 데크 외곽선 · 기둥(말아서) · 백 크래들 · 발판 · 소켓 링. <strong>이 문서에서 만드는 것의 대부분</strong>이 여기서 나옵니다. 택배 박스를 뜯어 써도 됩니다</td></tr>
+      <tr><td><strong>폼보드</strong><br><span class="mut3">필요하면</span></td><td class="n">5T · A1 2~3장</td><td>데크 상판(2겹) · 핸들바 3종. 골판지보다 잘 서고 커터 자국이 깔끔해 <strong>핸들바에는 폼보드를 권장</strong>합니다</td></tr>
+      <tr><td><strong>고무줄</strong></td><td class="n">굵은 것 한 봉지<br>+ 큰 고무밴드 몇 개</td><td>백↔크래들 · 핸들바↔기둥 · 발판↔데크 결속. 기둥 말이 조임. <strong>테이프 대신 고무줄로 묶으면 재조정이 3초</strong>입니다</td></tr>
+      <tr><td><strong>마스킹 테이프</strong></td><td class="n">3~4색 · 15~18mm</td><td>데크 외곽선 3종을 색으로 구분 · 기둥 높이 눈금 · 그립 구간 표시 · 바닥 리허설 선 · 삼각대 자리 표시</td></tr>
+      <tr><td><strong>가위</strong> <span class="mut3">(+ 커터)</span></td><td class="n">1~2개</td><td>골판지·폼보드 재단. 폼보드는 커터가 더 깔끔합니다</td></tr>
+      <tr><td><strong>글루건</strong></td><td class="n">본체 + 심</td><td>폼보드 2겹 접착 · 최종 확정된 부위만 고정. <strong>바꿀 가능성이 있는 곳은 고무줄로</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="g2" style="margin-top:9pt">
+    <div class="card b"><div class="kick">사지 않아도 되는 것 — 이미 있는 것으로</div>
+      <ul class="q mut" style="margin-top:2pt">
+        <li><strong>데크 높이</strong> — 책·잡지·택배 박스 적층</li>
+        <li><strong>의자</strong> — 실물을 데크 위에 올림 (팔걸이·바퀴 없는 것)</li>
+        <li><strong>골프백</strong> — 실물 캐디백, 클럽 꽂은 상태로</li>
+        <li><strong>줄자 · 자 · 유성매직</strong> — 보유품</li>
+        <li><strong>각도계 · 카메라</strong> — 스마트폰 수평계 앱 + 삼각대</li>
+        <li><strong>격자 배경</strong> — 큰 골판지 뒷면에 100mm 격자를 매직으로 그으면 됩니다</li>
+      </ul></div>
+    <table>
+      <caption>일정 · 2인 기준</caption>
+      <thead><tr><th style="width:44pt">시점</th><th>작업</th><th style="width:30pt">소요</th></tr></thead>
+      <tbody>
+        <tr><td class="c">D1 AM</td><td>재료 조달 (다이소·문구점 한 바퀴)</td><td class="n">1h</td></tr>
+        <tr><td class="c">D1 AM</td><td><strong>0단계 바닥 테이프 리허설</strong> — 데크 외곽·백 위치·휠베이스를 바닥에 실측선으로</td><td class="n">1h</td></tr>
+        <tr><td class="c">D1 PM</td><td>공통 킷 제작 — 눈금·마킹을 <strong>이때 전부</strong> 그려둘 것</td><td class="n">4h</td></tr>
+        <tr><td class="c">D2 AM</td><td>기준 피험자 1명 전 세팅 스윕 (A → D → B → C 순)</td><td class="n">3h</td></tr>
+        <tr><td class="c">D2 PM</td><td>후보 세팅 4명 검증</td><td class="n">1.5h</td></tr>
+        <tr><td class="c">D2 PM</td><td>사진 정리 · 치수 확정 · 미결 항목 정리</td><td class="n">1.5h</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="mut" style="margin-top:7pt; font-size:8.4pt">D1 오전의 바닥 리허설이 D2 오전 스윕을 줄여 줍니다. 리허설에서 탈락한 값은 리그에서 다시 보지 않습니다.</p>
+</div>
+
+<div class="sec">
+  <div class="shead"><div class="no">10</div><div class="tx"><h2>참고자료 — 기준 치수표</h2>
+    <p>세트포인트의 출처입니다. <strong>서서 타는 성인 킥보드 기준의 샘플값</strong>이라는 점을 기억하고 쓰세요.</p></div></div>
+
+  <div class="g21">
+    <table>
+      <caption>인체공학 최소 · 필수 치수</caption>
+      <thead><tr><th style="width:74pt">항목</th><th style="width:40pt" class="rt">최소</th><th style="width:66pt" class="rt">권장</th><th>이번 체크에서의 취급</th></tr></thead>
+      <tbody>
+        <tr><td>핸들바 높이</td><td class="n rt">950</td><td class="n rt">1,000–1,200</td><td>허리~배꼽 · 조절식 → 기둥 눈금</td></tr>
+        <tr><td>핸들바 폭</td><td class="n rt">420</td><td class="n rt">440–560</td><td>어깨너비 · 조향 안정 → HB 3종</td></tr>
+        <tr><td>그립 지름</td><td class="n rt">30</td><td class="n rt">32–34</td><td>장시간 파지 피로 → 감기 두께 3단</td></tr>
+        <tr><td>데크 길이</td><td class="n rt">400</td><td class="n rt">480–560</td><td>두 발 앞뒤 배치 → DK-1. 착석·중앙백은 별도 확장</td></tr>
+        <tr><td>데크 폭</td><td class="n rt">150</td><td class="n rt">165–205</td><td>발 좌우 여유</td></tr>
+        <tr><td>휠 지름</td><td class="n rt">203</td><td class="n rt">254–279</td><td>요철·턱 극복 → 정적 리그에선 재현 안 함. <strong>단, TYPE D의 백 하단 높이 판정에는 전륜 상단(254~279)이 기준</strong></td></tr>
+        <tr><td>지상고</td><td class="n rt">90</td><td class="n rt">100–150</td><td>노면 단차 대응 → H1 / H2 / H3</td></tr>
+        <tr><td>축간거리</td><td class="n rt">950</td><td class="n rt">950–1,150</td><td>직진 안정성 → 바닥 테이프로만 체감</td></tr>
+        <tr><td>최대 하중</td><td class="n rt">100kg</td><td class="n rt">120kg+</td><td><strong>성인 + 소지품 기준.</strong> 골프백 10~13kg이 더해지면 재산정 필요</td></tr>
+        <tr><td>안장 높이 (좌면~데크)</td><td class="n rt">400</td><td class="n rt">430–520</td><td>무릎 100~120° → 의자 좌면 높이로 직결</td></tr>
+        <tr><td>안장 길이 (깊이)</td><td class="n rt">350</td><td class="n rt">380–430</td><td>엉덩이~오금 (5%ile 여성)</td></tr>
+        <tr><td>무릎 거리</td><td class="n rt">100</td><td class="n rt">120–180</td><td>조향·승하차 시 무릎 간섭 방지 → B·D 백–무릎 간격의 근거</td></tr>
+      </tbody>
+    </table>
+    <div class="stack">
+      <div class="card"><div class="kick">골프백 참고 규격</div>
+        <ul class="q mut" style="margin-top:2pt">
+          <li><strong>캐디백</strong> — 구경 9인치(Ø230), 높이 890~950, 클럽 포함 10~13kg</li>
+          <li><strong>스탠드백(경량)</strong> — 구경 8~8.5인치, 높이 850~900, 6~9kg</li>
+          <li>클럽 헤드가 백 상단에서 <strong>150~250mm 돌출</strong></li>
+          <li>드라이버 약 1,150mm — 인출에 필요한 상방 여유를 함께 확인</li>
+        </ul></div>
+      <div class="card"><div class="kick">기준표 출처 · 실측 교차검증</div>
+        <ul class="q mut" style="margin-top:2pt">
+          <li>Segway Ninebot MAX G3</li>
+          <li>Xiaomi Electric Scooter 5 Max — 휠 10–11″ · 데크 480×201 · 최대하중 120–130kg</li>
+          <li>국내 전동킥보드 법정 속도 25km/h (easylaw.go.kr)</li>
+          <li>범위 참고 — Levy Electric</li>
+        </ul></div>
+      <div class="card am"><div class="kick">이번 체크에서 처음 정해지는 값</div>
+        <p class="mut" style="margin-top:3pt">골프백–탑승자 간격, 백–핸들 간격, 백 거치 각도·높이, 승하차 유효 폭, 조향 간섭 범위, 핸들 스윕각. <strong>참고할 자료가 없습니다.</strong> 시간이 부족하면 기본 테스트를 줄이고 이쪽에 시간을 몰아주세요.</p></div>
+    </div>
+  </div>
+</div>
+</body></html>
